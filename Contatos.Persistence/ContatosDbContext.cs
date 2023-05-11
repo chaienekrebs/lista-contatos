@@ -1,10 +1,5 @@
 ﻿using Contatos.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Contatos.Persistence
 {
@@ -15,9 +10,21 @@ namespace Contatos.Persistence
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
+        //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //        {
+        //#if !DEBUG
+        //            optionsBuilder.UseNpgsql(@"User ID=svc_pg_portalservidor;Password=bzigrrqOIU8upw2fgrB4;Host=192.168.152.25;Port=5432;Database=portalservidor_db;");
+        //#else
+
+        //            optionsBuilder.UseNpgsql(@"User ID=postgres;Password=tDdBw5pM45AnCKte;Host=192.168.152.25;Port=5432;Database=demoportalservidor_db;");
+        //#endif
+
+        //        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ContatosDbContext).Assembly);
         }
+        public DbSet<Pessoa> Pessoa { get; set; }
     }
 }
