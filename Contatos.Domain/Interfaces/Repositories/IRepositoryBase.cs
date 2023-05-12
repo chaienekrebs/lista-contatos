@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Contatos.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Contatos.Domain.Interfaces.Repositories
@@ -11,5 +12,6 @@ namespace Contatos.Domain.Interfaces.Repositories
         void Delete(int id);
         int SaveChanges();
         DbContext Context();
+        IQueryable<TEntity> QueryAll();
     }
 }

@@ -21,6 +21,11 @@ namespace Contatos.Persistence.Repositories
             return _dbSetEntity.Where(where).AsNoTracking();
         }
 
+        public IQueryable<TEntity> QueryAll()
+        {
+            return _dbSetEntity.AsNoTracking();
+        }
+
         public void Save(TEntity obj)
         {
             if (Convert.ToInt32(obj.GetType().GetProperty("Id").GetValue(obj, null)) != 0)

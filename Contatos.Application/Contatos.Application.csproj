@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Contatos.Helpers\Contatos.Helpers.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

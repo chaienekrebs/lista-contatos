@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Contatos.Application.Services;
+using Contatos.Domain.Interfaces.Application;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Contatos.Application
 {
@@ -6,6 +8,7 @@ namespace Contatos.Application
     {
         public static void Inject(IServiceCollection services)
         {
+            services.AddTransient<IPessoaService, PessoaService>();
         }
     }
 }
