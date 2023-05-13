@@ -24,7 +24,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"> <a class="nav-link nav-toggler d-block d-md-none waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
                         <li class="nav-item"> <a class="nav-link sidebartoggler d-none d-lg-block d-md-block waves-effect waves-dark" href="javascript:void(0)"><i class="icon-menu"></i></a> </li>
-                        <li class="">     
+                        <li class="">
                             <h2 class="titulo mt-3">Contatos</h2>
                         </li>
                     </ul>
@@ -74,6 +74,12 @@
                                 <i class="fa fa-users"></i> <span class="hide-menu">Gerenciar Pessoas</span>
                             </a>
                         </li>
+                        <li id="menu-solucao">
+                            <a class="waves-effect waves-dark" href="/gerenciar-tipos" aria-expanded="false">
+                                <i class="fa fa-cogs"></i> <span class="hide-menu">Gerenciar Tipo de Contato</span>
+                            </a>
+                        </li>
+
 
                         <li id="menu-solucao">
                             <a class="waves-effect waves-dark" href="/gerenciar-contatos" aria-expanded="false">
@@ -140,10 +146,10 @@
     @RenderSection("Scripts", required: false)
     @*<script src="~/js/core/startup.js?v@(FileVersion.Versao())"></script>*@
     <script type="text/javascript">
-        $(function () {
+        $(function() {
             $(".preloader").fadeOut();
         });
-        $(function () {
+        $(function() {
             $('[data-toggle="tooltip"]').tooltip()
         });
     </script>

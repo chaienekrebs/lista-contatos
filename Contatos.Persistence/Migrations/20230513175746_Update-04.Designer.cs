@@ -2,6 +2,7 @@
 using Contatos.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Contatos.Persistence.Migrations
 {
     [DbContext(typeof(ContatosDbContext))]
-    partial class ContatosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230513175746_Update-04")]
+    partial class Update04
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,10 +43,6 @@ namespace Contatos.Persistence.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PessoaId");
-
-                    b.HasIndex("TipoContatoId");
 
                     b.ToTable("Contato");
                 });
@@ -86,25 +85,6 @@ namespace Contatos.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TipoContato");
-                });
-
-            modelBuilder.Entity("Contatos.Domain.Entities.Contato", b =>
-                {
-                    b.HasOne("Contatos.Domain.Entities.Pessoa", "Pessoa")
-                        .WithMany()
-                        .HasForeignKey("PessoaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Contatos.Domain.Entities.TipoContato", "TipoContato")
-                        .WithMany()
-                        .HasForeignKey("TipoContatoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pessoa");
-
-                    b.Navigation("TipoContato");
                 });
 #pragma warning restore 612, 618
         }

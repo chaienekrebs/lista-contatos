@@ -9,6 +9,7 @@ namespace Contatos.Application
         public static void Inject(IServiceCollection services)
         {
             services.AddTransient<IPessoaService, PessoaService>();
+            services.AddTransient<ITipoContatoService, TipoContatoService>();
         }
     }
 }

@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace Contatos.API.Controllers
 {
     [Route("[controller]")]
-    public class PessoaController : Controller
+    public class TipoContatoController : Controller
     {
-        private IPessoaService _pessoaService;
-        public PessoaController(IPessoaService pessoaService)
+        private ITipoContatoService _tipoContatoService;
+        public TipoContatoController(ITipoContatoService tipoContatoService)
         {
-            _pessoaService = pessoaService;
+            _tipoContatoService = tipoContatoService;
         }
 
         [HttpGet("BuscaPorId")]
@@ -23,7 +23,7 @@ namespace Contatos.API.Controllers
             {
                 return await Task.Run(() =>
                 {
-                    var obj = _pessoaService.BuscaPorId(id);
+                    var obj = _tipoContatoService.BuscaPorId(id);
                     return Json(RetornoApi.Sucesso(obj));
                 });
             }
@@ -39,7 +39,7 @@ namespace Contatos.API.Controllers
         {
             try
             {
-                _pessoaService.Excluir(id);
+                _tipoContatoService.Excluir(id);
                 return await Task.Run(() =>
                 {
                     return Json(RetornoApi.Sucesso(true));
@@ -53,11 +53,11 @@ namespace Contatos.API.Controllers
 
         [HttpPost("Salvar")]
         [AllowAnonymous]
-        public async Task<JsonResult> Salvar([FromBody] Pessoa obj)
+        public async Task<JsonResult> Salvar([FromBody] TipoContato obj)
         {
             try
             {
-                _pessoaService.Salvar(obj);
+                _tipoContatoService.Salvar(obj);
                 return await Task.Run(() =>
                 {
                     return Json(RetornoApi.Sucesso(true));
@@ -69,9 +69,9 @@ namespace Contatos.API.Controllers
             }
         }
 
-        [HttpPost("ListaPessoas")]
+        [HttpPost("ListaTiposContato")]
         [AllowAnonymous]
-        public async Task<JsonResult> ListaPessoas(int draw, int start, int length, string nome, string cpf)
+        public async Task<JsonResult> ListaTiposContato(int draw, int start, int length, string nome)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace Contatos.API.Controllers
                 var sortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault();
                 return await Task.Run(() =>
                 {
-                    var lista = _pessoaService.ListaPessoas(start, length, nome, cpf, sortColumn, sortColumnDirection);
+                    var lista = _tipoContatoService.ListaTiposContato(start, length, nome, sortColumn, sortColumnDirection);
                     return Json(new
                     {
                         status = true,

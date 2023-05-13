@@ -2,24 +2,21 @@
     $("#cpf").inputmask(mascaraCpf);
 
     var alias = getUltimoAlias();
-    if (alias.indexOf('pessoa') > -1) {
-        $('#titulo').html('Cadastrar Pessoa');
-        $('#titulo-nav').html('Cadastrar Pessoa');
+    if (alias.indexOf('tipos') > -1) {
+        $('#titulo').html('Cadastrar Tipo de Contato');
+        $('#titulo-nav').html('Cadastrar Tipo de Contato');
 
     } else {
-        $("#id-pessoa").val(alias);
-        $('#titulo').html('Alterar Pessoa');
-        $('#titulo-nav').html('Alterar Pessoa');
+        $("#id-tipo").val(alias);
+        $('#titulo').html('Alterar Tipo de Contato');
+        $('#titulo-nav').html('Alterar Tipo de Contato');
         BuscaDadosCadastro(normalizarInt(alias));
     }
 });
 
 function BuscaDadosCadastro(alias) {
-    Pessoa_BuscaPorId(alias).then(function (data) {
-        $("#nome").val(data.nome);
-        $("#cpf").val(data.cpf);
-        $("#endereco").val(data.endereco);
-        
+    TipoContato_BuscaPorId(alias).then(function (data) {
+        $("#nome").val(data.nome);        
     });
 }
 
@@ -30,26 +27,24 @@ form.addEventListener('submit', function (e) {
 
     loading(ele);
     var obj = {
-        id: normalizarInt($("#id-pessoa").val()),
+        id: normalizarInt($("#id-tipo").val()),
         nome: $("#nome").val(),
-        cpf: $("#cpf").val(),
-        endereco: $("#endereco").val(),
     };
 
-    Pessoa_Salvar(obj).then(function () {
+    TipoContato_Salvar(obj).then(function () {
         $("input").val("");
         if (obj.id != "") {
             $.notify("Dados Alterados com sucesso!", "success", { delay: 2500 });
         } else {
-            $.notify("Pessoa cadastrada com sucesso!", "success", { delay: 2500 });
+            $.notify("Tipo de contato cadastrada com sucesso!", "success", { delay: 2500 });
         }
         unloading(ele);
         setTimeout(function () {
-            window.location.href = '/gerenciar-pessoas';
+            window.location.href = '/gerenciar-tipos';
         }, 2000);
     }, function (err) {
         $.notify(err, "error", { delay: 2500 });
-        window.location.href = '/gerenciar-pessoas';
+        window.location.href = '/gerenciar-tipos';
         $("input").val("");
         unloading(ele);
     });

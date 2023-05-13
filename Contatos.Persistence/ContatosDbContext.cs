@@ -26,5 +26,7 @@ namespace Contatos.Persistence
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ContatosDbContext).Assembly);
         }
         public DbSet<Pessoa> Pessoa { get; set; }
+        public DbSet<TipoContato> TipoContato { get; set; }
+        public DbSet<Contato> Contato { get; set; }
     }
 }
