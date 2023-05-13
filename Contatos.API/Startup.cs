@@ -1,9 +1,8 @@
+using System.IO.Compression;
 using Contatos.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using System.IO.Compression;
 
 namespace Contatos.Api
 {
@@ -16,7 +15,7 @@ namespace Contatos.Api
 
         public IConfiguration Configuration { get; }
 
-
+   
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
@@ -66,7 +65,7 @@ namespace Contatos.Api
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseResponseCompression();
             app.UseEndpoints(endpoints =>
             {

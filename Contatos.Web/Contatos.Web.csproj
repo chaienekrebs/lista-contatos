@@ -789,7 +789,6 @@
     <None Include="wwwroot\assets\node_modules\wizard\desktop.ini" />
     <None Include="wwwroot\assets\node_modules\wizard\jquery.steps.min.js" />
     <None Include="wwwroot\assets\node_modules\wizard\jquery.validate.min.js" />
-    <None Include="wwwroot\js\pages\Shared\_Layout.js" />
   </ItemGroup>
 
 </Project>

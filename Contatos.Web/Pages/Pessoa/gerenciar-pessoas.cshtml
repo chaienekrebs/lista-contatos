@@ -1,0 +1,104 @@
+﻿@page "/gerenciar-pessoas"
+
+@{
+    Layout = "_Layout";
+}
+
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h6 class="titulo-navbar">Gerenciar Pessoas</h6>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a id="inicio" href="/">Início</a></li>
+                <li class="breadcrumb-item active">Gerenciar Pessoas</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-2">
+                        <button type="button" class="btn btn-success col-xl-3 col-lg-4 col-md-12" style="float:right;" onclick="window.location.href='/cadastrar-pessoa'" id="button-nome-adquirente-adicional">Adicionar</button>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <div class="controls mb-3">
+                            <h6 class="card-title col-md-12 no-padding">Nome: </h6>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="nome">
+                                <button class="btn btn-secondary" onclick="$('#nome').val('');buscaConsulta();" type="button" alt="default">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <div class="controls mb-3">
+                            <h6 class="card-title col-md-12 no-padding">CPF: </h6>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="cpf">
+                                <button class="btn btn-secondary" onclick="$('#cpf').val('');buscaConsulta();" type="button" alt="default">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body p-t-0">
+                    <div class="card b-all shadow-none">
+                        <div class="table-responsive no-padding" id="div-table" style="display:none;">
+                            <table id="dataTable" class="table display table-hover table-striped no-wrap dt-responsive" style="width: 100%;">
+                                <thead class="no-padding">
+                                    <tr>
+                                        <th></th>
+                                        <th>Nome</th>
+                                        <th>CPF</th>
+                                        <th>Endereço</th>                                      
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="text-center text-invest-1" id="table-loading">
+                            <i class="fa fa-circle-notch fa-spin loading-table" style="font-size: 75px!important;margin:50px;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Modal excluir *@
+<div id="modal-excluir" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmação</h5>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="id-excluir" />
+                <h4>Deseja realmente remover essa pessoa?</h4>
+                <div class="col-md-12 col-sm-12">
+                    <div class="alert alert-sm alert-danger" id="alert-erro-remover-anexo" style="display:none;margin-top: 10px;"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="Excluir();">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script src="~/js/pages/Pessoa/gerenciar-pessoas.js?v@(FileVersion.Versao())"></script>
+}

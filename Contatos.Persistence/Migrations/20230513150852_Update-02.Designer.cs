@@ -2,6 +2,7 @@
 using Contatos.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Contatos.Persistence.Migrations
 {
     [DbContext(typeof(ContatosDbContext))]
-    partial class ContatosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230513150852_Update-02")]
+    partial class Update02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,9 +33,11 @@ namespace Contatos.Persistence.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CPF")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Endereco")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Nome")

@@ -1,4 +1,6 @@
-﻿using Contatos.Domain.Entities;
+﻿using Contatos.Helpers;
+using Contatos.Domain.DTO;
+using Contatos.Domain.Entities;
 using Contatos.Domain.Interfaces.Application;
 using Contatos.Domain.Interfaces.Repositories;
 
@@ -37,10 +39,19 @@ namespace Contatos.Application.Services
             }
         }
 
-        public List<Pessoa> ListaPessoas()
+        public ListaPaginada<Pessoa> ListaPessoas(int start, int length, string nome, string cpf, string sortColumn, string sortColumnDirection)
         {
-            return _repository.QueryAll().ToList();
+            nome = (nome ?? "").ToUpper();
+            var consulta = _repository.Query(x => (String.IsNullOrEmpty(nome) || x.Nome.ToUpper().Contains(nome)) && (String.IsNullOrEmpty(cpf) || x.CPF.Contains(cpf)));
+
+            var lista = new ListaPaginada<Pessoa>
+            {
+                TotalRegistros = consulta.Count(),
+                Lista = consulta.FiltrarPaginado(start, length, sortColumn, sortColumnDirection).ToList(),
+            };
+            return lista;
         }
+
 
         public void Salvar(Pessoa obj)
         {

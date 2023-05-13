@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Contatos.API.Controllers
 {
-    [ApiController]
     [Route("[controller]")]
     public class PessoaController : Controller
     {
@@ -34,7 +33,7 @@ namespace Contatos.API.Controllers
             }
         }
 
-        [HttpPost("Excluir")]
+        [HttpDelete("Excluir")]
         [AllowAnonymous]
         public async Task<JsonResult> Excluir(int id)
         {
@@ -70,16 +69,26 @@ namespace Contatos.API.Controllers
             }
         }
 
-        [HttpGet("ListaPessoas")]
+        [HttpPost("ListaPessoas")]
         [AllowAnonymous]
-        public async Task<JsonResult> ListaPessoas()
+        public async Task<JsonResult> ListaPessoas(int draw, int start, int length, string nome, string cpf)
         {
             try
             {
+                var sortColumn = Request.Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault();
+                var sortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault();
                 return await Task.Run(() =>
                 {
-                    var lista = _pessoaService.ListaPessoas();
-                    return Json(RetornoApi.Sucesso(lista));
+                    var lista = _pessoaService.ListaPessoas(start, length, nome, cpf, sortColumn, sortColumnDirection);
+                    return Json(new
+                    {
+                        status = true,
+                        draw = draw,
+                        recordsFiltered = lista.TotalRegistros,
+                        recordsTotal = lista.TotalRegistros,
+                        data = lista.Lista,
+                        dataCounts = lista.TotalRegistros,
+                    });
                 });
             }
             catch (Exception e)
@@ -87,5 +96,6 @@ namespace Contatos.API.Controllers
                 return Json(RetornoApi.Erro(e.Message));
             }
         }
+
     }
 }
