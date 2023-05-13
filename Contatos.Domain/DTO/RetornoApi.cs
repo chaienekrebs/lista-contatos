@@ -1,8 +1,4 @@
-
-using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-
-using System;
 
 namespace Contatos.Domain.DTOs
 {

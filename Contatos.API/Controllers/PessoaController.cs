@@ -70,15 +70,15 @@ namespace Contatos.API.Controllers
             }
         }
 
-        [HttpGet("ListaPessoa")]
+        [HttpGet("ListaPessoas")]
         [AllowAnonymous]
-        public async Task<JsonResult> ListaPessoa()
+        public async Task<JsonResult> ListaPessoas()
         {
             try
             {
                 return await Task.Run(() =>
                 {
-                    var lista = _pessoaService.ListaPessoa();
+                    var lista = _pessoaService.ListaPessoas();
                     return Json(RetornoApi.Sucesso(lista));
                 });
             }
@@ -87,9 +87,5 @@ namespace Contatos.API.Controllers
                 return Json(RetornoApi.Erro(e.Message));
             }
         }
-
-
-
-
     }
 }

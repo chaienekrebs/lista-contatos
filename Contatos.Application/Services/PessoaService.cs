@@ -37,7 +37,7 @@ namespace Contatos.Application.Services
             }
         }
 
-        public List<Pessoa> ListaPessoa()
+        public List<Pessoa> ListaPessoas()
         {
             return _repository.QueryAll().ToList();
         }
