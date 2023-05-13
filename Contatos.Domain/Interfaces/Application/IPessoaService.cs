@@ -9,5 +9,6 @@ namespace Contatos.Domain.Interfaces.Application
         ListaPaginada<Pessoa> ListaPessoas(int start, int length, string nome, string cpf, string sortColumn, string sortColumnDirection);
         void Salvar(Pessoa obj);
         void Excluir(int id);
+        List<Pessoa> ListaPessoas();
     }
 }

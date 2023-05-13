@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace Contatos.API.Controllers
 {
     [Route("[controller]")]
-    public class PessoaController : Controller
+    public class ContatoController : Controller
     {
-        private IPessoaService _pessoaService;
-        public PessoaController(IPessoaService pessoaService)
+        private IContatoService _contatoService;
+        public ContatoController(IContatoService contatoService)
         {
-            _pessoaService = pessoaService;
+            _contatoService = contatoService;
         }
 
         [HttpGet("BuscaPorId")]
@@ -23,7 +23,7 @@ namespace Contatos.API.Controllers
             {
                 return await Task.Run(() =>
                 {
-                    var obj = _pessoaService.BuscaPorId(id);
+                    var obj = _contatoService.BuscaPorId(id);
                     return Json(RetornoApi.Sucesso(obj));
                 });
             }
@@ -39,7 +39,7 @@ namespace Contatos.API.Controllers
         {
             try
             {
-                _pessoaService.Excluir(id);
+                _contatoService.Excluir(id);
                 return await Task.Run(() =>
                 {
                     return Json(RetornoApi.Sucesso(true));
@@ -53,11 +53,11 @@ namespace Contatos.API.Controllers
 
         [HttpPost("Salvar")]
         [AllowAnonymous]
-        public async Task<JsonResult> Salvar([FromBody] Pessoa obj)
+        public async Task<JsonResult> Salvar([FromBody] Contato obj)
         {
             try
             {
-                _pessoaService.Salvar(obj);
+                _contatoService.Salvar(obj);
                 return await Task.Run(() =>
                 {
                     return Json(RetornoApi.Sucesso(true));
@@ -69,9 +69,9 @@ namespace Contatos.API.Controllers
             }
         }
 
-        [HttpPost("ListaPessoas")]
+        [HttpPost("ListaContatos")]
         [AllowAnonymous]
-        public async Task<JsonResult> ListaPessoas(int draw, int start, int length, string nome, string cpf)
+        public async Task<JsonResult> ListaContatos(int draw, int start, int length, int idPessoa, int idTipo, string valor)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace Contatos.API.Controllers
                 var sortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault();
                 return await Task.Run(() =>
                 {
-                    var lista = _pessoaService.ListaPessoas(start, length, nome, cpf, sortColumn, sortColumnDirection);
+                    var lista = _contatoService.ListaContatos(start, length, idPessoa, idTipo, valor, sortColumn, sortColumnDirection);
                     return Json(new
                     {
                         status = true,
@@ -89,24 +89,6 @@ namespace Contatos.API.Controllers
                         data = lista.Lista,
                         dataCounts = lista.TotalRegistros,
                     });
-                });
-            }
-            catch (Exception e)
-            {
-                return Json(RetornoApi.Erro(e.Message));
-            }
-        }
-
-        [HttpGet("ListaPessoas")]
-        [AllowAnonymous]
-        public async Task<JsonResult> ListaPessoas()
-        {
-            try
-            {
-                return await Task.Run(() =>
-                {
-                    var obj = _pessoaService.ListaPessoas();
-                    return Json(RetornoApi.Sucesso(obj));
                 });
             }
             catch (Exception e)

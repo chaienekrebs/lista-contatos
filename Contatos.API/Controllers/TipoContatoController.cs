@@ -18,7 +18,7 @@ namespace Contatos.API.Controllers
         [HttpGet("BuscaPorId")]
         [AllowAnonymous]
         public async Task<JsonResult> BuscaPorId(int id)
-        {
+       {
             try
             {
                 return await Task.Run(() =>
@@ -89,6 +89,25 @@ namespace Contatos.API.Controllers
                         data = lista.Lista,
                         dataCounts = lista.TotalRegistros,
                     });
+                });
+            }
+            catch (Exception e)
+            {
+                return Json(RetornoApi.Erro(e.Message));
+            }
+        }
+
+
+        [HttpGet("ListaTipos")]
+        [AllowAnonymous]
+        public async Task<JsonResult> ListaTipos()
+        {
+            try
+            {
+                return await Task.Run(() =>
+                {
+                    var obj = _tipoContatoService.ListaTipos();
+                    return Json(RetornoApi.Sucesso(obj));
                 });
             }
             catch (Exception e)

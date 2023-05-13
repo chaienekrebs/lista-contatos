@@ -9,5 +9,6 @@ namespace Contatos.Domain.Interfaces.Application
         ListaPaginada<TipoContato> ListaTiposContato(int start, int length, string nome, string sortColumn, string sortColumnDirection);
         void Salvar(TipoContato obj);
         void Excluir(int id);
+        List<TipoContato> ListaTipos();
     }
 }

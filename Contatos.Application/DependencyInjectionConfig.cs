@@ -10,6 +10,7 @@ namespace Contatos.Application
         {
             services.AddTransient<IPessoaService, PessoaService>();
             services.AddTransient<ITipoContatoService, TipoContatoService>();
+            services.AddTransient<IContatoService, ContatoService>();
         }
     }
 }

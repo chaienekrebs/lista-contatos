@@ -17,7 +17,6 @@ function buscaConsulta() {
         table.destroy();
     }
     let nome = $('#nome').val();
-    let cpf = $('#cpf').val();
 
     table = $("#dataTable").DataTable({
         "order": [[1, "asc"]],

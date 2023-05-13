@@ -52,6 +52,11 @@ namespace Contatos.Application.Services
             return lista;
         }
 
+        public List<Pessoa> ListaPessoas()
+        {
+            return _repository.QueryAll().ToList();
+        }
+
 
         public void Salvar(Pessoa obj)
         {

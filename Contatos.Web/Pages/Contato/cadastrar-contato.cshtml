@@ -1,0 +1,64 @@
+﻿@page "/cadastrar-contato/{id?}"
+
+@{
+    Layout = "_Layout";
+}
+
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h6 class="titulo-navbar"><span id="titulo"></span></h6>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a id="inicio" href="/">Início</a></li>
+                <li class="breadcrumb-item active"><span id="titulo-nav"></span></li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<form>
+    <div class="card">
+        <div class="card" style="margin-bottom:0px">
+            <div class="card-body">
+                <div class="row">
+                    <input id="id-contato" style="display:none" />
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                        <div class="controls mb-3">
+                            <h6 class="card-title col-md-12 no-padding">Pessoa:<span class="label-danger-form"> *</span></h6>
+                            <div class="input-group">
+                                <select class="form-control selectpicker" data-style="form-control btn-secondary" onchange="" data-live-search="true" id="pessoa" required>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                        <div class="controls mb-3">
+                            <h6 class="card-title col-md-12 no-padding">Tipo:<span class="label-danger-form"> *</span></h6>
+                            <div class="input-group">
+                                <select class="form-control selectpicker" data-style="form-control btn-secondary" onchange="" data-live-search="true" id="tipo" required>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 mb-2">
+                        <h6 class="card-title col-md-12 no-padding">Valor:<span class="label-danger-form"> *</span></h6>
+                        <div class="input-group">
+                            <input class="form-control" type="text" name="valor" id="valor" required>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 mt-4" id="div-salvar">
+                        <button type="submit" class="btn btn-success col-xl-4 col-lg-4 col-md-12" style="float:right" id="btn-submit">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/js/pages/Contato/cadastrar-contato.js?v@(FileVersion.Versao())"></script>
+}

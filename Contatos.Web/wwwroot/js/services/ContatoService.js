@@ -1,6 +1,6 @@
-﻿async function TipoContato_BuscaPorId(id) {
+﻿async function Contato_BuscaPorId(id) {
     return new Promise((resolve, reject) => {
-        Get('TipoContato/BuscaPorId?id=' + id).then(function (response) {
+        Get('Contato/BuscaPorId?id=' + id).then(function (response) {
             if (response.status === 'success') {
                 resolve(response.data);
             } else {
@@ -13,9 +13,9 @@
     });
 }
 
-async function TipoContato_Excluir(id) {
+async function Contato_Excluir(id) {
     return new Promise((resolve, reject) => {
-        Delete('TipoContato/Excluir?id=' + id).then(function (response) {
+        Delete('Contato/Excluir?id=' + id).then(function (response) {
             if (response.status === 'success') {
                 resolve(response.data);
             } else {
@@ -28,24 +28,9 @@ async function TipoContato_Excluir(id) {
     });
 }
 
-async function TipoContato_Salvar(obj) {
+async function Contato_Salvar(obj) {
     return new Promise((resolve, reject) => {
-        Post('TipoContato/Salvar', obj).then(function (response) {
-            if (response.status === 'success') {
-                resolve(response.data);
-            } else {
-                reject(response.message);
-            }
-        }, function (err) {
-            console.error(err);
-            reject('Erro desconhecido');
-        });
-    });
-}
-
-async function TipoContato_ListaTipos() {
-    return new Promise((resolve, reject) => {
-        Get('TipoContato/ListaTipos').then(function (response) {
+        Post('Contato/Salvar', obj).then(function (response) {
             if (response.status === 'success') {
                 resolve(response.data);
             } else {

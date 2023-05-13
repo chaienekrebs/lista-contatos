@@ -2,7 +2,7 @@
     $("#cpf").inputmask(mascaraCpf);
 
     var alias = getUltimoAlias();
-    if (alias.indexOf('tipos') > -1) {
+    if (alias.indexOf('tipo') > -1) {
         $('#titulo').html('Cadastrar Tipo de Contato');
         $('#titulo-nav').html('Cadastrar Tipo de Contato');
 
@@ -36,7 +36,7 @@ form.addEventListener('submit', function (e) {
         if (obj.id != "") {
             $.notify("Dados Alterados com sucesso!", "success", { delay: 2500 });
         } else {
-            $.notify("Tipo de contato cadastrada com sucesso!", "success", { delay: 2500 });
+            $.notify("Tipo de contato cadastrado com sucesso!", "success", { delay: 2500 });
         }
         unloading(ele);
         setTimeout(function () {

@@ -3,24 +3,25 @@ using Contatos.Domain.DTO;
 using Contatos.Domain.Entities;
 using Contatos.Domain.Interfaces.Application;
 using Contatos.Domain.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Contatos.Application.Services
 {
-    public class TipoContatoService : ITipoContatoService
+    public class ContatoService : IContatoService
     {
-        private IRepositoryBase<TipoContato> _repository { get; set; }
-        public TipoContatoService(IRepositoryBase<TipoContato> repository)
+        private IRepositoryBase<Contato> _repository { get; set; }
+        public ContatoService(IRepositoryBase<Contato> repository)
         {
             _repository = repository;
         }
 
-        public TipoContato BuscaPorId(int id)
+        public Contato BuscaPorId(int id)
         {
 
             var obj = _repository.Query(x => x.Id == id).FirstOrDefault();
             if (obj == null)
             {
-                throw new Exception("Tipo não encontrado!");
+                throw new Exception("Contato não encontrado!");
             }
             return obj;
 
@@ -35,16 +36,16 @@ namespace Contatos.Application.Services
             }
             catch
             {
-                throw new Exception("Houve um problema ao excluir esse Tipo!");
+                throw new Exception("Houve um problema ao excluir esse Contato!");
             }
         }
 
-        public ListaPaginada<TipoContato> ListaTiposContato(int start, int length, string nome, string sortColumn, string sortColumnDirection)
+        public ListaPaginada<Contato> ListaContatos(int start, int length, int idPessoa, int idTipo, string valor, string sortColumn, string sortColumnDirection)
         {
-            nome = (nome ?? "").ToUpper();
-            var consulta = _repository.Query(x => (String.IsNullOrEmpty(nome) || x.Nome.ToUpper().Contains(nome)));
+            valor = (valor ?? "").ToUpper();
+            var consulta = _repository.Query(x => (idPessoa == 0 || x.PessoaId == idPessoa) && (idTipo == 0 || x.TipoContatoId == idTipo) && (String.IsNullOrEmpty(valor) || x.Valor.ToUpper().Contains(valor))).Include(x => x.Pessoa).Include(x => x.TipoContato);
 
-            var lista = new ListaPaginada<TipoContato>
+            var lista = new ListaPaginada<Contato>
             {
                 TotalRegistros = consulta.Count(),
                 Lista = consulta.FiltrarPaginado(start, length, sortColumn, sortColumnDirection).ToList(),
@@ -53,7 +54,7 @@ namespace Contatos.Application.Services
         }
 
 
-        public void Salvar(TipoContato obj)
+        public void Salvar(Contato obj)
         {
             try
             {
@@ -62,13 +63,8 @@ namespace Contatos.Application.Services
             }
             catch
             {
-                throw new Exception("Houve um problema ao salvar esse Tipo");
+                throw new Exception("Houve um problema ao salvar esse Contato");
             }
-        }
-
-        public List<TipoContato> ListaTipos()
-        {
-            return _repository.QueryAll().ToList();
         }
     }
 }
