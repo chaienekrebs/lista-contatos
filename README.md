@@ -1,1 +1,1 @@
-# Aplição para gerenciamento de Pessoas e seus contatos
+# Aplição para gerenciamento de pessoas e seus contatos
