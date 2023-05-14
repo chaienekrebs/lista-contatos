@@ -13,7 +13,7 @@ namespace Contatos.Api
             using (var scope = host.Services.CreateScope())
             {
                 var context = scope.ServiceProvider.GetService<ContatosDbContext>();
-                context.Database.Migrate();
+                //context.Database.Migrate();
 
                 ContatosInitializer.Initialize(context);
             }
