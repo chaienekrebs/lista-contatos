@@ -13,7 +13,7 @@ namespace Contatos.Persistence
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //#if !DEBUG
-            optionsBuilder.UseNpgsql(@"User ID=postgres;Password=123456;Host=192.168.11.97;Port=5436;Database=contatos_db;Pooling=true;Timeout=0;MinPoolSize=1;MaxPoolSize=1024;"), options => options.EnableRetryOnFailure());
+            optionsBuilder.UseNpgsql(@"User ID=postgres;Password=123456;Host=192.168.11.97;Port=5436;Database=contatos_db;Pooling=true;Timeout=0;MinPoolSize=1;MaxPoolSize=1024;", options => options.EnableRetryOnFailure());
             //#else
 
             //            optionsBuilder.UseNpgsql(@"User ID=postgres;Password=tDdBw5pM45AnCKte;Host=192.168.152.25;Port=5432;Database=demoportalservidor_db;");
