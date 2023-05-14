@@ -11,20 +11,20 @@ namespace Contatos.Persistence.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Contato",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    TipoContatoId = table.Column<int>(type: "integer", nullable: false),
-                    PessoaId = table.Column<int>(type: "integer", nullable: false),
-                    Valor = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Contato", x => x.Id);
-                });
+            //migrationBuilder.CreateTable(
+            //    name: "Contato",
+            //    columns: table => new
+            //    {
+            //        Id = table.Column<int>(type: "integer", nullable: false)
+            //            .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+            //        TipoContatoId = table.Column<int>(type: "integer", nullable: false),
+            //        PessoaId = table.Column<int>(type: "integer", nullable: false),
+            //        Valor = table.Column<string>(type: "text", nullable: false)
+            //    },
+            //    constraints: table =>
+            //    {
+            //        table.PrimaryKey("PK_Contato", x => x.Id);
+            //    });
 
             migrationBuilder.CreateTable(
                 name: "TipoContato",
@@ -43,8 +43,8 @@ namespace Contatos.Persistence.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Contato");
+            //migrationBuilder.DropTable(
+            //    name: "Contato");
 
             migrationBuilder.DropTable(
                 name: "TipoContato");

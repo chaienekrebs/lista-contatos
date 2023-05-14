@@ -10,16 +10,16 @@ namespace Contatos.Persistence
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
-        //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //        {
+                protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+                {
         //#if !DEBUG
-        //            optionsBuilder.UseNpgsql(@"User ID=svc_pg_portalservidor;Password=bzigrrqOIU8upw2fgrB4;Host=192.168.152.25;Port=5432;Database=portalservidor_db;");
+                    optionsBuilder.UseNpgsql(@"User ID=postgres;Password=123456;Host=192.168.11.97;Port=5436;Database=contatos_db;");
         //#else
 
         //            optionsBuilder.UseNpgsql(@"User ID=postgres;Password=tDdBw5pM45AnCKte;Host=192.168.152.25;Port=5432;Database=demoportalservidor_db;");
         //#endif
 
-        //        }
+                }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
