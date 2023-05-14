@@ -138,9 +138,9 @@ function ResolveUrl(url) {
 
 function GetApiAddress() {
     if (IsDebug()) {
-        return "https://localhost:44323/";//Endereço em que está compilando a api
+        return "https://deploy-lista-contatos.azurewebsites.net/";//Endereço em que está compilando a api
     }
-    return new URL(window.location.href).origin + "/api/";
+    return "https://deploy-lista-contatos.azurewebsites.net/";
 }
 
 function IsDebug() {
