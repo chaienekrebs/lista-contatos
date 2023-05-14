@@ -54,6 +54,10 @@ namespace Contatos.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            if(!env.IsDevelopment() && !bool.Parse(Configuration["EncryptionEnabled"]))
+            {
+                throw new Exception("A criptografia deve ser habilitada em todos os ambientes que não sejam de desenvolvimento");
+            }
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
